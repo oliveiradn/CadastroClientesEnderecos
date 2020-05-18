@@ -1,4 +1,5 @@
 ﻿using Cadastro.Dominio.Abstracoes;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cadastro.Dominio.Entidades.Enderecos

@@ -1,4 +1,5 @@
 ﻿using Cadastro.Dominio.Entidades.Clientes;
+using Cadastro.Infraestrutura.Extensao;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
@@ -13,10 +14,16 @@ namespace Cadastro.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            var clienteModelo = new ClienteModelo();
             var clientes = new ClienteRepositorio().GetAll();
 
             if (clientes.Any())
-                return Ok(JsonConvert.SerializeObject(clientes));
+            {
+                foreach (var item in clientes)
+                    clienteModelo.CopiarDaEntidade(item);
+
+                return Ok(clienteModelo.ParaJson());
+            }
             else
                 return NotFound("Registros não foram encontrados");
         }
@@ -25,10 +32,14 @@ namespace Cadastro.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] long id)
         {
+            var clienteModelo = new ClienteModelo();
             var retorno = new ClienteRepositorio().GetById(id);
 
             if (retorno.Id > 0)
-                return Ok(retorno);
+            {
+                clienteModelo.CopiarDaEntidade(retorno);
+                return Ok(clienteModelo.ParaJson());
+            }
             else
                 return NotFound("Cliente não encontrado");
         }
