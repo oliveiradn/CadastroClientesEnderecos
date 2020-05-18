@@ -1,6 +1,5 @@
 ﻿using Cadastro.Dominio.Abstracoes;
 using Cadastro.Dominio.Contexto;
-using DocumentosBrasileiros;
 using System.Linq;
 
 namespace Cadastro.Dominio.Entidades.Clientes

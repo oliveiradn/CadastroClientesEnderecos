@@ -3,7 +3,6 @@ using Cadastro.Dominio.Entidades.Clientes;
 using DocumentosBrasileiros;
 using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Xunit;
 
 namespace Cadastro.Teste.Entidades

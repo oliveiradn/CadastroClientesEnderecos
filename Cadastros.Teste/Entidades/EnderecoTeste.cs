@@ -1,10 +1,6 @@
 ﻿using Bogus;
 using Cadastro.Dominio.Entidades.Enderecos;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace Cadastro.Teste.Entidades
@@ -13,22 +9,6 @@ namespace Cadastro.Teste.Entidades
     {
         public EnderecoModelo EnderecoModelo { get; private set; }
         public Endereco Endereco { get; private set; }
-
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MaxLength(30, ErrorMessage = "O campo nome permite no máximo 50 caracteres")]
-        //public string Logradouro { get; set; } //50
-
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MaxLength(30, ErrorMessage = "O campo nome permite no máximo 40 caracteres")]
-        //public string Bairro { get; set; } //40
-
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MaxLength(30, ErrorMessage = "O campo nome permite no máximo 40 caracteres")]
-        //public string Cidade { get; set; } //40
-
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MaxLength(30, ErrorMessage = "O campo nome permite no máximo 40 caracteres")]
-        //public string Estado { get; set; } //40
 
         public EnderecoTeste()
         {

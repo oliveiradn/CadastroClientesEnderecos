@@ -2,7 +2,6 @@
 using Cadastro.Dominio.Entidades.Enderecos;
 using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Cadastro.Dominio.Contexto
 {
