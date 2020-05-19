@@ -19,9 +19,12 @@ namespace Cadastro.Api
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //var connection = @"Server=QSBR-NB5\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;";
 
             services.AddDbContext<ContextoDeDados>(options => options.UseSqlServer(ConexaoAcesso.ConexaoBancoSql));
 
@@ -33,10 +36,14 @@ namespace Cadastro.Api
             });
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(opt =>
             {
                 opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Cadastro de Clientes e Endereços");
@@ -57,6 +64,27 @@ namespace Cadastro.Api
             {
                 endpoints.MapControllers();
             });
+
+            //UpdateDatabase(app);
         }
+
+        //private static void UpdateDatabase(IApplicationBuilder app)
+        //{
+        //    using (var serviceScope = app.ApplicationServices
+        //        .GetRequiredService<IServiceScopeFactory>()
+        //        .CreateScope())
+        //    {
+        //        using (var context = serviceScope.ServiceProvider.GetService<ContextoDb>())
+        //        {
+        //            context.Database.Migrate();
+        //        }
+        //    }
+
+        //    //var optionsBuilder = new DbContextOptionsBuilder<ContextoDb>().UseSqlServer(@"Server=QSBR-NB5\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;");
+        //    //var context = new ContextoDb(optionsBuilder.Options);
+
+        //    //context.Database.Migrate();
+
+        //}
     }
 }

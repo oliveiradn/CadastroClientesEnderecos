@@ -2,6 +2,7 @@
 using Cadastro.Infraestrutura.Extensoes;
 using Flunt.Validations;
 using System;
+using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cadastro.Dominio.Entidades.Clientes
