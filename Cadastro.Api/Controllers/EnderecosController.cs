@@ -55,8 +55,8 @@ namespace Cadastro.Api.Controllers
         public IActionResult Put([FromRoute]long id, [FromBody] EnderecoModelo modelo)
         {
             var endereco = new EnderecoRepositorio().BuscarPeloId(id);
-            if (endereco == null)
 
+            if (endereco == null)
                 return NotFound("Endereco não encontrado");
 
             endereco.CopiarDoModelo(modelo);
@@ -75,10 +75,10 @@ namespace Cadastro.Api.Controllers
             var endereco = new EnderecoRepositorio().BuscarPeloId(id);
 
             if (endereco == null)
-                return BadRequest("Registro não encontrado");
+                return BadRequest("Endereco não encontrado");
 
             new EnderecoRepositorio().Deletar(endereco);
-            return Ok("Deletado com sucesso");
+            return Ok("Endereco Deletado com sucesso");
         }
     }
 }

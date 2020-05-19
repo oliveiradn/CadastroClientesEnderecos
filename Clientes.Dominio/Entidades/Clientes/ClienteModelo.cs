@@ -22,7 +22,7 @@ namespace Cadastro.Dominio.Entidades.Clientes
         public override void CopiarDaEntidade(Cliente entidade)
         {
             Nome = entidade.Nome;
-            Cpf = entidade.Cpf.AdicionarCaracterEspecial();
+            Cpf = entidade.Cpf;
             DataNascimento = entidade.DataNascimento;
         }
     }
