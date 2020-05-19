@@ -13,6 +13,11 @@
 
 * Cadastro.Api
   * Controllers
+    * Get()
+    * Get([FromRoute] long id)
+    * Post([FromBody] Entidade entidade)
+    * Put([FromRoute]long id, [FromBody] Entidade entidade)
+    * Delete([FromRoute]long id)
   * Startup
   * Program
 * Cadastro.Dominio
