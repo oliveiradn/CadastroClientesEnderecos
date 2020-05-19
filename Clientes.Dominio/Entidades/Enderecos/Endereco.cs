@@ -28,10 +28,10 @@ namespace Cadastro.Dominio.Entidades.Enderecos
 
             if (Valid)
             {
-                Logradouro = EnderecoModelo.Logradouro;
-                Bairro = EnderecoModelo.Bairro;
-                Cidade = EnderecoModelo.Cidade;
-                Estado = EnderecoModelo.Estado;
+                Logradouro = EnderecoModelo.Logradouro.Trim();
+                Bairro = EnderecoModelo.Bairro.Trim();
+                Cidade = EnderecoModelo.Cidade.Trim();
+                Estado = EnderecoModelo.Estado.Trim();
 
                 Validar();
             }

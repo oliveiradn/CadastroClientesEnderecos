@@ -2,7 +2,7 @@
 
 namespace Cadastro.Infraestrutura.Conexoes
 {
-    public abstract class ConexaoAcesso : DadosConexaoTeste
+    public abstract class ConexaoAcesso : BaseDadoLocal
     {
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Cadastro.Dominio.Abstracoes;
+using Cadastro.Infraestrutura.Extensoes;
 using Flunt.Validations;
 using System;
+using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cadastro.Dominio.Entidades.Clientes
@@ -24,8 +26,8 @@ namespace Cadastro.Dominio.Entidades.Clientes
 
             if (Valid)
             {
-                Nome = clienteModelo.Nome;
-                Cpf = clienteModelo.Cpf;
+                Nome = clienteModelo.Nome.Trim();
+                Cpf = clienteModelo.Cpf.Trim().RemoverCaracterEspecial();
                 DataNascimento = clienteModelo.DataNascimento;
                 Validar();
             }
