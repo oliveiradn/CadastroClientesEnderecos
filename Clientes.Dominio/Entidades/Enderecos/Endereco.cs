@@ -8,19 +8,19 @@ namespace Cadastro.Dominio.Entidades.Enderecos
     {
         [Required]
         [MaxLength(50)]
-        public string Logradouro { get; private set; } //50
+        public string Logradouro { get; private set; }
 
         [Required]
         [MaxLength(40)]
-        public string Bairro { get; private set; } //40
+        public string Bairro { get; private set; }
 
         [Required]
         [MaxLength(40)]
-        public string Cidade { get; private set; } //40
+        public string Cidade { get; private set; }
 
         [Required]
         [MaxLength(40)]
-        public string Estado { get; private set; } //40
+        public string Estado { get; private set; }
 
         public void CopiarDoModelo(EnderecoModelo EnderecoModelo)
         {

@@ -8,7 +8,7 @@ namespace Cadastro.Dominio.Contexto
     {
         public IConfiguration Configuration;
 
-        public ContextoDeDados Conexao()
+        public static ContextoDeDados Conexao()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ContextoDeDados>().UseSqlServer(ConexaoAcesso.ConexaoBancoSql);
 

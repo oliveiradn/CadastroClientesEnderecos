@@ -13,86 +13,72 @@ namespace Cadastro.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var EnderecoModelo = new EnderecoModelo();
-            var Enderecos = new EnderecoRepositorio().BuscarTudo();
+            var enderecos = new EnderecoRepositorio().BuscarTudo();
 
-            if (Enderecos.Any())
-            {
-                foreach (var item in Enderecos)
-                    EnderecoModelo.CopiarDaEntidade(item);
-
-                return Ok(EnderecoModelo.ParaJson());
-            }
-            else
+            if (!enderecos.Any())
                 return NotFound("Registros não foram encontrados");
+
+            var enderecosModelo = EnderecoServico.CriarListaEnderecosModelo(enderecos);
+            return Ok(enderecosModelo.ParaJson());
         }
 
         // GET: api/Enderecos/5
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] long id)
         {
-            var EnderecoModelo = new EnderecoModelo();
-            var retorno = new EnderecoRepositorio().BuscarPeloId(id);
+            var endereco = new EnderecoRepositorio().BuscarPeloId(id);
 
-            if (retorno.Id > 0)
-            {
-                EnderecoModelo.CopiarDaEntidade(retorno);
-                return Ok(EnderecoModelo.ParaJson());
-            }
-            else
+            if (endereco == null)
                 return NotFound("Endereco não encontrado");
+
+            var enderecoModelo = new EnderecoModelo();
+            enderecoModelo.CopiarDaEntidade(endereco);
+            return Ok(enderecoModelo.ParaJson());
         }
 
         // POST: api/Enderecos
         [HttpPost]
         public IActionResult Post([FromBody] EnderecoModelo modelo)
         {
-            var entidade = new Endereco();
+            var endereco = new Endereco();
+            endereco.CopiarDoModelo(modelo);
 
-            entidade.CopiarDoModelo(modelo);
+            if (endereco.Invalid)
+                return BadRequest(error: endereco.Notifications);
 
-            if (entidade.Valid)
-            {
-                new EnderecoRepositorio().Inserir(entidade);
-                return Ok("Endereco inserido com sucesso");
-            }
-            else
-                return BadRequest(error: entidade.Notifications);
+            new EnderecoRepositorio().Inserir(endereco);
+            return Ok("Endereco inserido com sucesso");
         }
 
         // PUT: api/Enderecos/5
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute]long id, [FromBody] EnderecoModelo modelo)
         {
-            var entidade = new Endereco();
+            var endereco = new EnderecoRepositorio().BuscarPeloId(id);
+            if (endereco == null)
 
-            entidade.CopiarDoModelo(modelo);
+                return NotFound("Endereco não encontrado");
 
-            if (entidade.Valid)
-                if (new EnderecoRepositorio().ExistePeloId(id))
-                {
-                    new EnderecoRepositorio().Atualizar(entidade);
-                    return Ok("Endereco atualizado com sucesso");
-                }
-                else
-                    return NotFound("Endereco não encontrado");
+            endereco.CopiarDoModelo(modelo);
 
-            return BadRequest(entidade.Notifications);
+            if (endereco.Invalid)
+                return BadRequest(endereco.Notifications);
+
+            new EnderecoRepositorio().Atualizar(endereco);
+            return Ok("Endereco atualizado com sucesso");
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute]long id)
         {
-            var entidade = new EnderecoRepositorio().BuscarPeloId(id);
+            var endereco = new EnderecoRepositorio().BuscarPeloId(id);
 
-            if (entidade.Id > 0)
-            {
-                new EnderecoRepositorio().Deletar(entidade);
-                return Ok("Deletado com sucesso");
-            }
-            else
+            if (endereco == null)
                 return BadRequest("Registro não encontrado");
+
+            new EnderecoRepositorio().Deletar(endereco);
+            return Ok("Deletado com sucesso");
         }
     }
 }

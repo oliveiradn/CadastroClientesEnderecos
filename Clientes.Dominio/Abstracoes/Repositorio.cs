@@ -9,19 +9,17 @@ namespace Cadastro.Dominio.Abstracoes
     {
         public virtual T BuscarPeloId(long id)
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 
-                var dado = dbSet.Where(x => x.Id == id).FirstOrDefault();
-
-                return dado;
+                return dbSet.Where(x => x.Id == id).FirstOrDefault();
             }
         }
 
         public virtual bool ExistePeloId(long id)
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 
@@ -31,19 +29,17 @@ namespace Cadastro.Dominio.Abstracoes
 
         public virtual IEnumerable<T> BuscarTudo()
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 
-                var dado = dbSet.ToList();
-
-                return dado;
+                return dbSet.ToList();
             }
         }
 
         public virtual void Inserir(T entity)
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 
@@ -55,7 +51,7 @@ namespace Cadastro.Dominio.Abstracoes
 
         public virtual void Atualizar(T entity)
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 
@@ -67,7 +63,7 @@ namespace Cadastro.Dominio.Abstracoes
 
         public virtual void Deletar(T entity)
         {
-            using (var context = new ProvedorAcesso().Conexao())
+            using (var context = ProvedorAcesso.Conexao())
             {
                 var dbSet = context.Set<T>();
 

@@ -16,9 +16,6 @@ namespace Cadastro.Dominio.Entidades.Clientes
         public string Cpf { get; private set; }
 
         [Required]
-        public int Idade { get; private set; }
-
-        [Required]
         public DateTime DataNascimento { get; private set; }
 
         public void CopiarDoModelo(ClienteModelo clienteModelo)
@@ -37,7 +34,7 @@ namespace Cadastro.Dominio.Entidades.Clientes
         protected override Contract ConfigurarContrato(Contract contract)
         {
             if (!ValidarCPF(Cpf))
-                contract.AddNotification("Cpf", $"O Cpf {Cpf} do Cliente é inválido.");
+                contract.AddNotification("Cpf", $"O Cpf '{Cpf}' do Cliente é inválido.");
 
             return contract;
         }

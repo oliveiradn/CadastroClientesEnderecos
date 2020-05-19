@@ -13,7 +13,9 @@ namespace Cadastro.Dominio.Abstracoes
         [Key]
         public long Id { get; private set; }
 
-        public void Validar()
+        public void SetarId(long id) => Id = id;
+
+        protected void Validar()
         {
             var contrato = ContratoBase(this);
 
@@ -23,7 +25,7 @@ namespace Cadastro.Dominio.Abstracoes
             AddNotifications(contrato);
         }
 
-        public virtual bool ValidarCPF(string documento)
+        protected virtual bool ValidarCPF(string documento)
         {
             var numeros = new Regex("^[0-9]");
             var cpf = new Cpf();
@@ -53,12 +55,12 @@ namespace Cadastro.Dominio.Abstracoes
                         var valor = property.GetValue(entidade).ToString();
 
                         if (SearchDatanotation(property, "RequiredAttribute") != null)
-                            contrato.IsNotNullOrEmpty(valor, property.Name, $"{property.Name} de {entidade.GetType().Name} {valor} é obrigatório");
+                            contrato.IsNotNullOrEmpty(valor, property.Name, $"{property.Name} de {entidade.GetType().Name} '{valor}' é obrigatório");
 
                         if (SearchDatanotation(property, "MaxLengthAttribute") != null)
                         {
                             var maxLength = (int)SearchDatanotation(property, "MaxLengthAttribute").ConstructorArguments[0].Value;
-                            contrato.HasMaxLen(valor, maxLength, property.Name, $"{property.Name} de {entidade.GetType().Name} {valor} deve ter no máximo {maxLength} caracteres.");
+                            contrato.HasMaxLen(valor, maxLength, property.Name, $"{property.Name} de {entidade.GetType().Name} '{valor}' deve ter no máximo {maxLength} caracteres.");
                         }
                     }
                 }
