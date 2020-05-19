@@ -16,8 +16,8 @@ namespace Cadastro.Api.Controllers
         {
             var clientes = new ClienteRepositorio().BuscarTudo();
 
-            if (clientes.Any())
-                return NotFound("Registros não foram encontrados");
+            if (!clientes.Any())
+                return NotFound("Clientes não foram encontrados");
 
             var clientesModelo = ClienteServico.CriarListaClientesModelo(clientes);
             return Ok(clientesModelo.ParaJson());
@@ -47,7 +47,7 @@ namespace Cadastro.Api.Controllers
             if (cliente.Invalid)
                 return BadRequest(error: cliente.Notifications);
 
-            if (!new ClienteRepositorio().ExistePeloCpf(cliente.Cpf))
+            if (new ClienteRepositorio().ExistePeloCpf(cliente.Cpf))
                 return BadRequest($"O Cliente com Cpf {cliente.Cpf} já consta no sistema.");
 
             new ClienteRepositorio().Inserir(cliente);
@@ -85,7 +85,7 @@ namespace Cadastro.Api.Controllers
                 return BadRequest("Registro não encontrado");
 
             new ClienteRepositorio().Deletar(cliente);
-            return Ok("Deletado com sucesso");
+            return Ok("Cliente Deletado com sucesso");
         }
     }
 }
