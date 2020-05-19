@@ -1,4 +1,5 @@
 using Cadastro.Dominio.Contexto;
+using Cadastro.Infraestrutura.Conexoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,9 @@ namespace Cadastro.Api
         {
             services.AddControllers();
 
-            var connection = @"Server=QSBR-NB5\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;";
+            //var connection = @"Server=QSBR-NB5\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;";
 
-            services.AddDbContext<ContextoDb>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ContextoDeDados>(options => options.UseSqlServer(ConexaoAcesso.ConexaoBancoSql));
 
             services.AddMvc();
 

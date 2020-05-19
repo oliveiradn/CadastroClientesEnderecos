@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Cadastro.Infraestrutura.Extensao
+namespace Cadastro.Infraestrutura.Extensoes
 
 {
     public static class TiposExtencoes

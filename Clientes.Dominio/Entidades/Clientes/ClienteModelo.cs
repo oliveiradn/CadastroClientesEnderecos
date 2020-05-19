@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization;
 
 namespace Cadastro.Dominio.Entidades.Clientes
 {
@@ -26,7 +24,5 @@ namespace Cadastro.Dominio.Entidades.Clientes
             Cpf = entidade.Cpf;
             DataNascimento = entidade.DataNascimento;
         }
-
-        public static string ParaJson(this ClienteModelo clienteModelo) => JsonConvert.SerializeObject(clienteModelo);
     }
 }

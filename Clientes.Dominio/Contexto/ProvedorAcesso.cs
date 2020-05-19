@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cadastro.Infraestrutura.Conexoes;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Cadastro.Dominio.Contexto
@@ -7,14 +8,11 @@ namespace Cadastro.Dominio.Contexto
     {
         public IConfiguration Configuration;
 
-        public ContextoDb Conexao()
+        public ContextoDeDados Conexao()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<ContextoDb>().UseSqlServer(@"Server=QSBR-NB5\\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;");
+            var optionsBuilder = new DbContextOptionsBuilder<ContextoDeDados>().UseSqlServer(ConexaoAcesso.ConexaoBancoSql);
 
-            return new ContextoDb(optionsBuilder.Options);
+            return new ContextoDeDados(optionsBuilder.Options);
         }
-
-        ////private string StringDeConexao() => Configuration.GetConnectionString("DefaultConnection");
-        ////private string StringDeConexao() => @"Server=QSBR-NB5\\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;";//Configuration.GetConnectionString("DefaultConnection");
     }
 }

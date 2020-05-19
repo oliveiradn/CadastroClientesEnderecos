@@ -1,13 +1,14 @@
 ﻿using Cadastro.Dominio.Entidades.Clientes;
 using Cadastro.Dominio.Entidades.Enderecos;
+using Cadastro.Infraestrutura.Conexoes;
 using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cadastro.Dominio.Contexto
 {
-    public class ContextoDb : DbContext
+    public class ContextoDeDados : DbContext
     {
-        public ContextoDb(DbContextOptions<ContextoDb> options) : base(options)
+        public ContextoDeDados(DbContextOptions<ContextoDeDados> options) : base(options)
         { }
 
         public DbSet<Cliente> Clientes { get; set; }
@@ -20,6 +21,6 @@ namespace Cadastro.Dominio.Contexto
             base.OnModelCreating(builder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(@"Server=QSBR-NB5\SQLEXPRESS;Database=TesteApi;Trusted_Connection=True;");
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(ConexaoAcesso.ConexaoBancoSql);
     }
 }

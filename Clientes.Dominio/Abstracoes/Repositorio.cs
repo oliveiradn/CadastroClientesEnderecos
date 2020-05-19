@@ -7,7 +7,7 @@ namespace Cadastro.Dominio.Abstracoes
 {
     public class Repositorio<T> where T : Entidade
     {
-        public virtual T GetById(long id)
+        public virtual T BuscarPeloId(long id)
         {
             using (var context = new ProvedorAcesso().Conexao())
             {
@@ -19,7 +19,7 @@ namespace Cadastro.Dominio.Abstracoes
             }
         }
 
-        public virtual bool ExistisById(long id)
+        public virtual bool ExistePeloId(long id)
         {
             using (var context = new ProvedorAcesso().Conexao())
             {
@@ -29,7 +29,7 @@ namespace Cadastro.Dominio.Abstracoes
             }
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> BuscarTudo()
         {
             using (var context = new ProvedorAcesso().Conexao())
             {
@@ -41,7 +41,7 @@ namespace Cadastro.Dominio.Abstracoes
             }
         }
 
-        public virtual void Insert(T entity)
+        public virtual void Inserir(T entity)
         {
             using (var context = new ProvedorAcesso().Conexao())
             {
@@ -53,7 +53,7 @@ namespace Cadastro.Dominio.Abstracoes
             }
         }
 
-        public virtual void Update(T entity)
+        public virtual void Atualizar(T entity)
         {
             using (var context = new ProvedorAcesso().Conexao())
             {
@@ -65,7 +65,7 @@ namespace Cadastro.Dominio.Abstracoes
             }
         }
 
-        public virtual void Delete(T entity)
+        public virtual void Deletar(T entity)
         {
             using (var context = new ProvedorAcesso().Conexao())
             {

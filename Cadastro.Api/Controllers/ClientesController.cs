@@ -1,8 +1,7 @@
 ﻿using Cadastro.Dominio.Entidades.Clientes;
-using Cadastro.Infraestrutura.Extensao;
+using Cadastro.Infraestrutura.Extensoes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
-using Newtonsoft.Json;
 
 namespace Cadastro.Api.Controllers
 {
@@ -15,7 +14,7 @@ namespace Cadastro.Api.Controllers
         public IActionResult Get()
         {
             var clienteModelo = new ClienteModelo();
-            var clientes = new ClienteRepositorio().GetAll();
+            var clientes = new ClienteRepositorio().BuscarTudo();
 
             if (clientes.Any())
             {
@@ -33,7 +32,7 @@ namespace Cadastro.Api.Controllers
         public IActionResult Get([FromRoute] long id)
         {
             var clienteModelo = new ClienteModelo();
-            var retorno = new ClienteRepositorio().GetById(id);
+            var retorno = new ClienteRepositorio().BuscarPeloId(id);
 
             if (retorno.Id > 0)
             {
@@ -56,7 +55,7 @@ namespace Cadastro.Api.Controllers
             {
                 if (!new ClienteRepositorio().ExistisByCpf(entidade.Cpf))
                 {
-                    new ClienteRepositorio().Insert(entidade);
+                    new ClienteRepositorio().Inserir(entidade);
                     return Ok("Cliente inserido com sucesso");
                 }
                 else
@@ -75,9 +74,9 @@ namespace Cadastro.Api.Controllers
             entidade.CopiarDoModelo(modelo);
 
             if (entidade.Valid)
-                if (new ClienteRepositorio().ExistisById(id))
+                if (new ClienteRepositorio().ExistePeloId(id))
                 {
-                    new ClienteRepositorio().Update(entidade);
+                    new ClienteRepositorio().Atualizar(entidade);
                     return Ok("Cliente atualizado com sucesso");
                 }
                 else
@@ -90,11 +89,11 @@ namespace Cadastro.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute]long id)
         {
-            var entidade = new ClienteRepositorio().GetById(id);
+            var entidade = new ClienteRepositorio().BuscarPeloId(id);
 
             if (entidade.Id > 0)
             {
-                new ClienteRepositorio().Delete(entidade);
+                new ClienteRepositorio().Deletar(entidade);
                 return Ok("Deletado com sucesso");
             }
             else
