@@ -2,14 +2,21 @@
 
 ## Arquitetura:
 
-* AspNet Core 3.1
-* Swagger Framework
+### Padrões
+* SOLID
 * Domain Driven Desing
 * Test Driven Development
 * Api RestFull
-* SOLID
+
+### Frameworks
+* AspNet Core 3.1
+* Entity Framework Core 3
+* Swagger Framework
+* XUnit
 
 ## Projeto:
+
+### Organização
 
 * Cadastro.Api
   * Controllers
@@ -35,3 +42,12 @@
   * Extensoes
 * Cadastro.Teste
   * Teste de Entidades
+
+### Acesso a Api
+[Endereço Localhost]/swagger/index.html
+
+
+## Base de dados
+### Realizar Migration em uma base de dados:
+* Add-Migration InitialRelease
+* Update-Database
