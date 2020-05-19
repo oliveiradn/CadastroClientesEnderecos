@@ -53,7 +53,11 @@ namespace Cadastro.Teste.Entidades
 
         [Theory]
         [InlineData("123.456.78-90")]
+        [InlineData("123.4b6.78-90")]
+        [InlineData("1w3.4b6.t8-9q")]
         [InlineData("1234567890")]
+        [InlineData("1234a67890")]
+        [InlineData("12c45f78u0")]
         [InlineData("123456789")]
         [InlineData("numero do Cpf")]
         [InlineData("123")]

@@ -27,7 +27,7 @@ namespace Cadastro.Dominio.Abstracoes
 
         protected virtual bool ValidarCPF(string documento)
         {
-            var numeros = new Regex("^[0-9]");
+            var numeros = new Regex("^[0-9]+$");
             var cpf = new Cpf();
 
             cpf.Numero = documento;

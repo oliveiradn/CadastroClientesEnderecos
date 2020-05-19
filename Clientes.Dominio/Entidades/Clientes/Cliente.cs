@@ -25,9 +25,12 @@ namespace Cadastro.Dominio.Entidades.Clientes
 
             if (Valid)
             {
-                Nome = clienteModelo.Nome.Trim();
-                Cpf = clienteModelo.Cpf.Trim().RemoverCaracterEspecial();
-                DataNascimento = clienteModelo.DataNascimento;
+                if (clienteModelo.Nome != null)
+                    Nome = clienteModelo.Nome.Trim();
+                if (clienteModelo.Cpf != null)
+                    Cpf = clienteModelo.Cpf.Trim().RemoverCaracterEspecial();
+                if (clienteModelo.DataNascimento != DateTime.MinValue)
+                    DataNascimento = clienteModelo.DataNascimento;
                 Validar();
             }
         }
