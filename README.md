@@ -7,12 +7,14 @@
 * Domain Driven Desing
 * Test Driven Development
 * Api RestFull
+* Fast Fail Validation
 
 ### Frameworks
 * AspNet Core 3.1
 * Entity Framework Core 3
 * Swagger Framework
 * XUnit
+* Flunt
 
 ## Projeto:
 
